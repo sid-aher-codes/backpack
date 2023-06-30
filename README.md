@@ -1,1 +1,1 @@
-# backpack
+# This is fun backpack game. Enjoy!
