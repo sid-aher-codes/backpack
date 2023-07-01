@@ -9,18 +9,20 @@ class Backpack:
         self.screen = pygame.display.set_mode(screen_size)
         self.screen.fill(background_color)
 
-    def add_image(self, image, location):
+    def add_image(self, image, location, size):
         #self.image = image
         #self.location = location
         self.image = pygame.image.load(image)
+        self.image = pygame.transform.scale(self.image, size)
         self.screen.blit(self.image, location)
+        
 
         
 # Create backpack background screen
 bp = Backpack("Backpack", (400,400), (255,255,255))
 
-# Add image to the screen
-bp.add_image("/Users/sidaher/Documents/pygames/backpack/images/backpack.png", (0,0))
+# Add image to the screen. 
+bp.add_image("/Users/sidaher/Documents/pygames/backpack/images/backpack.png", (0,0), (200,150))
 
 # Update the display using flip
 pygame.display.flip()
