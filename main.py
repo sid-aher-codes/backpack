@@ -1,42 +1,64 @@
 import pygame
 
-class Backpack:
-    def __init__(self, game_name, screen_size, background_color):
-        #init games
-        self.game_name = game_name
-        self.screen_size = screen_size
-        self.background_color = background_color
-        self.screen = pygame.display.set_mode(screen_size)
-        self.screen.fill(background_color)
+pygame.init()
 
-    def add_image(self, image, location, size):
-        #self.image = image
-        #self.location = location
-        self.image = pygame.image.load(image)
-        self.image = pygame.transform.scale(self.image, size)
-        self.screen.blit(self.image, location)
-        
+display_width = 800
+display_height = 600
 
-        
-# Create backpack background screen
-bp = Backpack("Backpack", (400,400), (255,255,255))
+gameDisplay = pygame.display.set_mode((display_width,display_height))
+pygame.display.set_caption('A bit Racey')
 
-# Add image to the screen. 
-bp.add_image("/Users/sidaher/Documents/pygames/backpack/images/backpack.png", (0,0), (200,150))
+black = (0,0,0)
+white = (255,255,255)
 
-# Update the display using flip
-pygame.display.flip()
+clock = pygame.time.Clock()
+crashed = False
+carImg = pygame.image.load('/Users/sidaher/Documents/pygames/backpack/images/backpack.png')
 
-# Variable to keep our game loop running
-running = True
+def car(x,y):
+    gameDisplay.blit(carImg, (x,y))
 
-# game loop
-while running:
-    # for loop through the event queue  
+x =  (display_width * 0.45)
+y = (display_height * 0.8)
+x_change = 0
+y_change = 0
+car_speed = 0
+
+while not crashed:
     for event in pygame.event.get():
-      
-        # Check for QUIT event      
         if event.type == pygame.QUIT:
-            running = False
+            crashed = True
 
-    
+        ############################
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x_change = -5
+            elif event.key == pygame.K_RIGHT:
+                x_change = 5
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                y_change = -5
+            if event.key == pygame.K_DOWN:
+                y_change = 5
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                x_change = 0
+        
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                y_change = 0
+        ######################
+    ##
+    x += x_change
+    y += y_change
+   ##         
+    gameDisplay.fill(white)
+    car(x,y)
+        
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+quit()
