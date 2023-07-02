@@ -1,4 +1,5 @@
 import pygame
+import PyQt6
 
 pygame.init()
 
@@ -14,7 +15,10 @@ white = (255,255,255)
 clock = pygame.time.Clock()
 crashed = False
 carImg = pygame.image.load('/Users/sidaher/Documents/pygames/backpack/images/backpack.png')
+#carImg = pygame.transform.scale(carImg, (140,95))
 
+
+# Image and position of backpack
 def car(x,y):
     gameDisplay.blit(carImg, (x,y))
 
@@ -49,6 +53,11 @@ while not crashed:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                 y_change = 0
+        
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mousePos = pygame.mouse.get_pos()
+            if carImg.get_rect().collidepoint(mousePos):
+                print("Clicked on the backpack")
         ######################
     ##
     x += x_change
