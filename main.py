@@ -19,7 +19,7 @@ carImg = pygame.image.load('/Users/sidaher/Documents/pygames/backpack/images/bac
 
 
 # Image and position of backpack
-def car(x,y):
+def backpack(x,y):
     gameDisplay.blit(carImg, (x,y))
 
 x =  (display_width * 0.45)
@@ -33,18 +33,32 @@ while not crashed:
         if event.type == pygame.QUIT:
             crashed = True
 
+        # x -35 to 635
+        # y -95 to 320
         ############################
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                x_change = -5
+                if -35 <= x <= 635:
+                    x_change = -5
+                else:
+                    x = -35
             elif event.key == pygame.K_RIGHT:
-                x_change = 5
-        
+                if -35 <= x <= 635:
+                    x_change = 5
+                else:
+                    x = 630
+  
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                y_change = -5
+                if -90 <= y <= 325:
+                    y_change = -5
+                else:
+                    y = -90
             if event.key == pygame.K_DOWN:
-                y_change = 5
+                if -90 <= y <= 325:
+                    y_change = 5
+                else:
+                    y = 325
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -62,9 +76,11 @@ while not crashed:
     ##
     x += x_change
     y += y_change
+    print("x", x)
+    print("y", y)
    ##         
     gameDisplay.fill(white)
-    car(x,y)
+    backpack(x,y)
         
     pygame.display.update()
     clock.tick(60)
