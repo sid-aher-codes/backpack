@@ -38,23 +38,31 @@ while not crashed:
             if event.key == pygame.K_LEFT:
                 if -35 <= x <= 635:
                     x_change = -5
-                else:
+                elif x <= -35:
                     x = -35
+                else:
+                    x = 635
             elif event.key == pygame.K_RIGHT:
                 if -35 <= x <= 635:
                     x_change = 5
+                elif x <= -35:
+                    x = -35
                 else:
-                    x = 630
+                    x = 635
   
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 if -90 <= y <= 325:
                     y_change = -5
-                else:
+                elif y <= -90:
                     y = -90
+                else:
+                    y = 325
             if event.key == pygame.K_DOWN:
                 if -90 <= y <= 325:
                     y_change = 5
+                elif y <= -90:
+                    y = -90
                 else:
                     y = 325
 
@@ -69,11 +77,12 @@ while not crashed:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mousePos = pygame.mouse.get_pos()
             if carImg.get_rect().collidepoint(mousePos):
+                print("Clicked on the backpack")
         ######################
-    ##
+    
     x += x_change
     y += y_change
-   ##         
+         
     gameDisplay.fill(white)
     backpack(x,y)
         
@@ -82,3 +91,13 @@ while not crashed:
 
 pygame.quit()
 quit()
+
+'''
+Mumbai to newyork - Aug 17
+Newyork to Detroit - Aug 17 
+
+Last date to change the travel date without any penalty
+if there is any penalty how much?
+info@
+
+'''
